@@ -34,5 +34,44 @@ namespace proj
         {
             InitializeComponent();
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        private void Help_Click(object sender, RoutedEventArgs e)
+        {
+            System.Windows.MessageBox.Show("Программа предназначена для решения обыкновенных дифференциальных уравнений с заданной точностью.\n Поддерживается распознавание функций: abs, acos, asin, atan, cos, cosh, floor, ln, log, sign, sin, sinh, sqrt, tan, tanh. \n Поддерживается ввод данных из файла. Размещение данных в файле:\n 1-я строка - левая граница\n 2-я строка - правая граница\n 3-я сторка - x0\n 4-я сторка - y0\n 5-я сторка - имя переменной\n 6-я строка - выражение", "Справка");
+        }
     }
 }
