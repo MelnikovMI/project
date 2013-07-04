@@ -55,5 +55,41 @@ namespace proj
                 sw.Close();
             }
         }
+
+        private void Reset_Click(object sender, RoutedEventArgs e)
+        {
+            sw.WriteLine(DateTime.UtcNow.ToString() + "\tПользователь перезапустил приложение");
+            Charts.Series.Clear();
+            dispatcherTimer.Stop();
+            t_variable.Visibility = Visibility.Collapsed;
+            t_function.Visibility = Visibility.Collapsed;
+            start.Visibility = Visibility.Collapsed;
+            radioButton_file.Visibility = Visibility.Visible;
+            radioButton_TextBox.Visibility = Visibility.Visible;
+            next.Visibility = Visibility.Visible;
+            Charts.Visibility = Visibility.Collapsed;
+            progressBar1.Visibility = Visibility.Collapsed;
+            s_word.Visibility = Visibility.Collapsed;
+            s_picture.Visibility = Visibility.Collapsed;
+            s_txt.Visibility = Visibility.Collapsed;
+            flag = "textbox";
+            t_function.Text = "";
+            t_a.Text = "";
+            t_b.Text = "";
+            t_variable.Text = "";
+            t_x0.Text = "";
+            t_y0.Text = "";
+            funk = "";
+            variable = "";
+            a1 = "";
+            b1 = "";
+            X0 = "";
+            Y0 = "";
+            path = "picture";
+            s_picture.IsChecked = false;
+            s_txt.IsChecked = false;
+            s_word.IsChecked = false;
+        }
+
     }
 }
