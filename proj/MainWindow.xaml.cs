@@ -91,5 +91,19 @@ namespace proj
             s_word.IsChecked = false;
         }
 
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            sw.WriteLine(DateTime.UtcNow.ToString() + "\tПользователь закрыл приложение");
+            if (Directory.Exists(path))
+            {
+                DirectoryInfo dirInfo = new DirectoryInfo(path);
+                foreach (FileInfo file in dirInfo.GetFiles())
+                {
+                    file.Delete();
+                }
+            }
+            sw.Close();
+            this.Close();
+        }
     }
 }
