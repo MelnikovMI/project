@@ -418,5 +418,21 @@ namespace proj
             }
             sw1.Close();
         }
+
+
+
+        public void save_path()
+        {
+
+            System.Windows.Forms.FolderBrowserDialog OpenFolder = new System.Windows.Forms.FolderBrowserDialog();
+            // Показываем надпись в наверху диалога. 
+            OpenFolder.Description = "Выбор каталога";
+            // Выбираем первоначальную папку. 
+            OpenFolder.SelectedPath = @"D:\";
+            if (OpenFolder.ShowDialog() != 0)
+            {
+                Path = OpenFolder.SelectedPath;
+            }
+        }
     }
 }
