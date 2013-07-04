@@ -34,5 +34,135 @@ namespace proj
         {
             InitializeComponent();
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        public void gif()
+        {
+            int index;
+            path = "picture";
+            String outputFilePath = Path + "Решение.gif";
+            AnimatedGifEncoder e = new AnimatedGifEncoder();
+            e.Start(outputFilePath);
+            e.SetDelay(500);
+            e.SetRepeat(0);
+            if (Directory.Exists(Path + path))
+            {
+                DirectoryInfo dirInfo = new DirectoryInfo(Path + path);
+                int tt = dirInfo.GetFiles().Length;
+                for (index = 1; index <= tt; index++)
+                {
+                    e.AddFrame(System.Drawing.Image.FromFile(Path + path + "\\Graf" + index.ToString() + ".png"));
+                }
+            }
+            e.Finish();
+
+        }
     }
 }
