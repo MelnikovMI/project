@@ -446,6 +446,71 @@ namespace proj
 
 
 
+        public void get_data()
+        {
+            if (flag == "file")
+            {
+                try
+                {
+                    string filename = "";
+                    Microsoft.Win32.OpenFileDialog openFileDialog1 = new Microsoft.Win32.OpenFileDialog() { Filter = "Текстовые файлы(*.txt)|*.txt" };
+                    if (openFileDialog1.ShowDialog() != null)
+                    {
+                        filename = openFileDialog1.FileName;
+                        FileStream stream = new FileStream(filename, FileMode.Open);
+                        StreamReader reader = new StreamReader(stream);
+                        t_a.Text = reader.ReadLine();
+                        t_b.Text = reader.ReadLine();
+                        t_x0.Text = reader.ReadLine();
+                        t_y0.Text = reader.ReadLine();
+                        t_variable.Text = reader.ReadLine();
+                        t_function.Text = reader.ReadLine();
+                        t_function.ToolTip = "Уравнение, считаннное из файла";
+                        stream.Close();
+                        t_variable.Visibility = Visibility.Visible;
+                        t_function.Visibility = Visibility.Visible;
+                        start.Visibility = Visibility.Visible;
+                        radioButton_file.Visibility = Visibility.Collapsed;
+                        radioButton_TextBox.Visibility = Visibility.Collapsed;
+                        next.Visibility = Visibility.Collapsed;
+                        s_word.Visibility = Visibility.Visible;
+                        s_picture.Visibility = Visibility.Visible;
+                        s_txt.Visibility = Visibility.Visible;
+                    }
+                    else
+                    {
+                        System.Windows.MessageBox.Show("Файл не выбран", "Ошибка!");
+                    }
+                }
+                catch
+                {
+                }
+            }
+            else
+            {
+                t_variable.Visibility = Visibility.Visible;
+                t_function.Visibility = Visibility.Visible;
+                start.Visibility = Visibility.Visible;
+                radioButton_file.Visibility = Visibility.Collapsed;
+                radioButton_TextBox.Visibility = Visibility.Collapsed;
+                next.Visibility = Visibility.Collapsed;
+                s_word.Visibility = Visibility.Visible;
+                s_picture.Visibility = Visibility.Visible;
+                s_txt.Visibility = Visibility.Visible;
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
