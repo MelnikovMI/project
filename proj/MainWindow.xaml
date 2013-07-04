@@ -33,5 +33,12 @@
         <CheckBox Height="25" HorizontalAlignment="Left" Visibility="Collapsed" Margin="74,254,0,0" Name="s_txt" VerticalAlignment="Top" Width="229">Сохранить результаты в текстовый файл</CheckBox>
         <CheckBox Height="25" Margin="74,279,0,0" Name="s_picture" Visibility="Collapsed" VerticalAlignment="Top" HorizontalAlignment="Left" Width="321">Сохранить графическое отображение результатов расчета</CheckBox>
         <CheckBox Margin="74,304,0,0" Name="s_word" Visibility="Collapsed" Height="25" HorizontalAlignment="Left" VerticalAlignment="Top" Width="176">Сохранить результаты в word</CheckBox>
+        <Button Height="25" HorizontalAlignment="Left" Visibility="Collapsed" Margin="74,351,0,0" Name="start" VerticalAlignment="Top" Width="82" Click="start_Click">Решить</Button>
+        <ProgressBar Visibility="Collapsed" IsIndeterminate="True" Margin="226,0,254,52" Name="progressBar1" Height="25" VerticalAlignment="Bottom" />
+        <Button Height="25" HorizontalAlignment="Right" Margin="0,76.638,88.348,0" Name="next" VerticalAlignment="Top" Width="94" ToolTip="Ввод дпнных" Click="next_Click">Далее</Button>
+        <Label Height="25" HorizontalAlignment="Right" Margin="0,124,327,0" Name="l_x0" VerticalAlignment="Top" Width="32">X0</Label>
+        <Label Height="25" HorizontalAlignment="Right" Margin="0,124,198,0" Name="l_y0" VerticalAlignment="Top" Width="33">Y0</Label>
+        <TextBox Height="25" HorizontalAlignment="Right" Margin="0,150,292,0" Name="t_x0" ToolTip="Начальное значение x0" VerticalAlignment="Top" Width="100" />
+        <TextBox Height="25" HorizontalAlignment="Right" Margin="0,150,165,0" Name="t_y0" ToolTip="Начальное значение y0" VerticalAlignment="Top" Width="100" />
     </Grid>
 </Window>
