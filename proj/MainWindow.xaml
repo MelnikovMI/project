@@ -19,5 +19,14 @@
                 <charting:LinearAxis  Orientation="X" Title="x" ShowGridLines="True" Name="X" />
             </charting:Chart.Axes>
         </charting:Chart>
+        <TextBlock Height="25" Margin="98,38,88.348,0" Name="textBlock1" FontSize="18" Text=" Решение обыкновеннх дифференциальных уравнений методом Адамса" TextAlignment="Center" VerticalAlignment="Top" />
+        <RadioButton Height="25" HorizontalAlignment="Left" Margin="208,82,0,0" Name="radioButton_file" VerticalAlignment="Top" Width="162.337">Считать уравнение из файла</RadioButton>
+        <RadioButton Height="25" Margin="0,82,231,0" Name="radioButton_TextBox" VerticalAlignment="Top" HorizontalAlignment="Right" Width="153">Ввести уравнение вручную</RadioButton>
+        <Label Height="25" HorizontalAlignment="Left" Margin="130,124,0,0" Name="l_a" VerticalAlignment="Top" Width="89">Левая граница</Label>
+        <Label Height="25" Margin="277,124,0,0" Name="l_b" VerticalAlignment="Top" HorizontalAlignment="Left" Width="91">Правая граница</Label>
+        <TextBox Height="25" HorizontalAlignment="Left" Margin="124,150,0,0" Name="t_a" VerticalAlignment="Top" Width="100" ToolTip="Левая граница" />
+        <TextBox Height="25" Margin="274,150,0,0" Name="t_b" VerticalAlignment="Top" ToolTip="Правая граница" HorizontalAlignment="Left" Width="100" />
+        <Label Height="25" HorizontalAlignment="Left" Margin="172,204,0,0" Name="label1" VerticalAlignment="Top" Width="21">f(</Label>
+        <Label Height="25" HorizontalAlignment="Left" Margin="267,204,0,0" Name="label2" VerticalAlignment="Top" Width="24">)=</Label>
     </Grid>
 </Window>
