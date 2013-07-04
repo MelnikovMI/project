@@ -30,9 +30,30 @@ namespace proj
     /// </summary>
     public partial class MainWindow : Window
     {
+        string funk, variable;
+        string flag = "textbox";
+        string a1, b1, X0, Y0;
+        string Path = @"D:\\";
+        string path = "picture";
+        double a, b, x0, y0;
+        ArrayList myX = new ArrayList();
+        ArrayList myY = new ArrayList();
+        int num_points = 10, num_starting_points = 4;
+        System.Windows.Threading.DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
+        StreamWriter sw = new StreamWriter(File.Open("log.file", FileMode.Append));
+
         public MainWindow()
         {
             InitializeComponent();
+            Charts.Series.Clear();
+            if (File.Exists("log.file"))
+            {
+            }
+            else
+            {
+                StreamWriter sw = new StreamWriter("log.file", true);
+                sw.Close();
+            }
         }
     }
 }
