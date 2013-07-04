@@ -106,24 +106,16 @@ namespace proj
             this.Close();
         }
 
+        private void Help_Click(object sender, RoutedEventArgs e)
+        {
+            System.Windows.MessageBox.Show("Программа предназначена для решения обыкновенных дифференциальных уравнений с заданной точностью.\n Поддерживается распознавание функций: abs, acos, asin, atan, cos, cosh, floor, ln, log, sign, sin, sinh, sqrt, tan, tanh. \n Поддерживается ввод данных из файла. Размещение данных в файле:\n 1-я строка - левая граница\n 2-я строка - правая граница\n 3-я сторка - x0\n 4-я сторка - y0\n 5-я сторка - имя переменной\n 6-я строка - выражение", "Справка");
+        }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        public class ChartPoint
+        {
+            public double Value1 { get; set; }
+            public double Value2 { get; set; }
+        }
 
         private void start_Click(object sender, RoutedEventArgs e)
         {
@@ -231,114 +223,6 @@ namespace proj
             }
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         public void gif()
         {
             int index;
@@ -360,7 +244,6 @@ namespace proj
             e.Finish();
 
         }
-
 
         public void save_word(double x)
         {
@@ -406,8 +289,6 @@ namespace proj
             //wordApplication.Quit();
         }
 
-
-
         public void save_txt(double x)
         {
             StreamWriter sw1 = new StreamWriter(Path + "Решение.txt", false);
@@ -418,8 +299,6 @@ namespace proj
             }
             sw1.Close();
         }
-
-
 
         public void save_path()
         {
@@ -434,17 +313,6 @@ namespace proj
                 Path = OpenFolder.SelectedPath;
             }
         }
-
-
-
-
-
-
-
-
-
-
-
 
         public void get_data()
         {
@@ -500,8 +368,6 @@ namespace proj
             }
         }
 
-
-
         private void next_Click(object sender, RoutedEventArgs e)
         {
             if (radioButton_file.IsChecked == true)
@@ -517,49 +383,56 @@ namespace proj
             get_data();
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        private void Help_Click(object sender, RoutedEventArgs e)
+        public void MetodAdamsa(object sender, EventArgs e)
         {
-            System.Windows.MessageBox.Show("Программа предназначена для решения обыкновенных дифференциальных уравнений с заданной точностью.\n Поддерживается распознавание функций: abs, acos, asin, atan, cos, cosh, floor, ln, log, sign, sin, sinh, sqrt, tan, tanh. \n Поддерживается ввод данных из файла. Размещение данных в файле:\n 1-я строка - левая граница\n 2-я строка - правая граница\n 3-я сторка - x0\n 4-я сторка - y0\n 5-я сторка - имя переменной\n 6-я строка - выражение", "Справка");
-        }
-
-        public class ChartPoint
-        {
-            public double Value1 { get; set; }
-            public double Value2 { get; set; }
+            Parser p1 = new Parser();
+            Parser p2 = new Parser();
+            Parser p3 = new Parser();
+            Parser p4 = new Parser();
+            double k1, k2, k3, k4, h;
+            int i;
+            h = (b - a) / num_points;
+            myX.Add(x0);
+            myY.Add(y0);
+            for (i = 0; i < num_starting_points; i++)
+            {
+                p1.Evaluate(Regex.Replace(funk, variable, "(" + Convert.ToString(myX[i]) + "," + Convert.ToString(myY[i]) + ")"));
+                k1 = h * (p1.Result);
+                p2.Evaluate(Regex.Replace(funk, variable, "(" + Convert.ToString(Convert.ToDouble(myX[i]) + h / 2) + "," + Convert.ToString(Convert.ToDouble(myY[i]) + k1 / 2) + ")"));
+                k2 = h * (p2.Result);
+                p3.Evaluate(Regex.Replace(funk, variable, "(" + Convert.ToString(Convert.ToDouble(myX[i]) + h / 2) + "," + Convert.ToString(Convert.ToDouble(myY[i]) + k2 / 2) + ")"));
+                k3 = h * (p3.Result);
+                p4.Evaluate(Regex.Replace(funk, variable, "(" + Convert.ToString(Convert.ToDouble(myX[i]) + h) + "," + Convert.ToString(Convert.ToDouble(myY[i]) + k3) + ")"));
+                k4 = h * (p4.Result);
+                myX.Add(Convert.ToDouble(myX[i]) + h);
+                myY.Add(Convert.ToDouble(myY[i]) + (k1 + 2 * k2 + 2 * k3 + k4) / 6);
+            }
+            for (i = num_starting_points; i < num_points; i++)
+            {
+                p1.Evaluate(Regex.Replace(funk, variable, "(" + Convert.ToString(myX[i - 1]) + "," + Convert.ToString(Convert.ToDouble(myY[i - 1])) + ")"));
+                p2.Evaluate(Regex.Replace(funk, variable, "(" + Convert.ToString(myX[i - 2]) + "," + Convert.ToString(Convert.ToDouble(myY[i - 2])) + ")"));
+                p3.Evaluate(Regex.Replace(funk, variable, "(" + Convert.ToString(myX[i - 3]) + "," + Convert.ToString(Convert.ToDouble(myY[i - 3])) + ")"));
+                p4.Evaluate(Regex.Replace(funk, variable, "(" + Convert.ToString(myX[i - 4]) + "," + Convert.ToString(Convert.ToDouble(myY[i - 4])) + ")"));
+                myY.Add(Convert.ToDouble(myY[i - 1]) + (h / 24) * (55 * (p1.Result) - 59 * (p2.Result) + 37 * (p3.Result) - 9 * (p4.Result)));
+                myX.Add(Convert.ToDouble(myX[i]) + h);
+            }
+            LineSeries NewChart = new LineSeries();
+            NewChart.ItemsSource = new ObservableCollection<ChartPoint>
+            {
+                new ChartPoint{ Value1 = Convert.ToDouble(myX[0]), Value2 = Convert.ToDouble(myY[0]) },
+                new ChartPoint{ Value1 = Convert.ToDouble(myX[1]), Value2 = Convert.ToDouble(myY[1]) },
+                new ChartPoint{ Value1 = Convert.ToDouble(myX[2]), Value2 = Convert.ToDouble(myY[2]) },
+                new ChartPoint{ Value1 = Convert.ToDouble(myX[3]), Value2 = Convert.ToDouble(myY[3]) },
+                new ChartPoint{ Value1 = Convert.ToDouble(myX[4]), Value2 = Convert.ToDouble(myY[4]) },
+                new ChartPoint{ Value1 = Convert.ToDouble(myX[5]), Value2 = Convert.ToDouble(myY[5]) },
+                new ChartPoint{ Value1 = Convert.ToDouble(myX[6]), Value2 = Convert.ToDouble(myY[6]) },
+                new ChartPoint{ Value1 = Convert.ToDouble(myX[7]), Value2 = Convert.ToDouble(myY[7]) },
+                new ChartPoint{ Value1 = Convert.ToDouble(myX[8]), Value2 = Convert.ToDouble(myY[8]) },
+                new ChartPoint{ Value1 = Convert.ToDouble(myX[9]), Value2 = Convert.ToDouble(myY[9]) },
+            };
+            NewChart.DependentValuePath = "Value1";
+            NewChart.IndependentValuePath = "Value2";
+            Charts.Series.Add(NewChart);
         }
     }
 }
