@@ -502,6 +502,23 @@ namespace proj
 
 
 
+        private void next_Click(object sender, RoutedEventArgs e)
+        {
+            if (radioButton_file.IsChecked == true)
+            {
+                sw.WriteLine(DateTime.UtcNow.ToString() + "\tПользователь выбрал считывание данных из файла");
+                flag = "file";
+            }
+            if (radioButton_TextBox.IsChecked == true)
+            {
+                sw.WriteLine(DateTime.UtcNow.ToString() + "\tПользователь выбрал ввод данных вручную");
+                flag = "textbox";
+            }
+            get_data();
+        }
+
+
+
 
 
 
