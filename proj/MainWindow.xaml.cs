@@ -209,5 +209,18 @@ namespace proj
             //doc.Close(ref missing, ref missing, ref missing);
             //wordApplication.Quit();
         }
+
+
+
+        public void save_txt(double x)
+        {
+            StreamWriter sw1 = new StreamWriter(Path + "Решение.txt", false);
+            sw1.WriteLine("МЕТОД АДАМСА ДЛЯ РЕШЕНИЯ ОБЫНОВЕННЫХ ДИФФЕРЕНЦИАЛЬНЫХ УРАВНЕНИЙ\r\nВы ввели уравнение f(" + variable + ")=" + funk + "\r\nЛевая граница = " + a + "\r\nПравая граница = " + b + "\r\nx0=" + X0 + "\r\ny0=" + Y0 + "\r\nОтвет: " + variable + " :");
+            for (int i = 0; i < num_points; i++)
+            {
+                sw1.WriteLine("( " + Convert.ToString(myX[i]) + " , " + Convert.ToString(myY[i]) + " )\r\n");
+            }
+            sw1.Close();
+        }
     }
 }
