@@ -1,0 +1,23 @@
+﻿<Window x:Class="proj.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:charting="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+        Title="Метод Адамса" Height="998" Width="835">
+    <Grid>
+        <Menu Height="20" Name="menu1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="auto">
+            <MenuItem Header="Меню">
+                <MenuItem Header="Занаво" Name="Reset" Click="Reset_Click"></MenuItem>
+                <Separator></Separator>
+                <MenuItem Header="Выход" Name="Exit" Click="Exit_Click"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Помощь" Name="Help" Click="Help_Click" />
+        </Menu>
+        <charting:Chart Margin="69,424,62,114" Name="Charts" Title="График метода Адамса">
+            <charting:LineSeries Name="ChartOne" DataContext="{Binding}" DependentValueBinding="{Binding StringFormat=\{0:F5\}}" RenderTransformOrigin="0,0" />
+            <charting:Chart.Axes>
+                <charting:LinearAxis Orientation="Y" Title="y" ShowGridLines="True" Name="Y" />
+                <charting:LinearAxis  Orientation="X" Title="x" ShowGridLines="True" Name="X" />
+            </charting:Chart.Axes>
+        </charting:Chart>
+    </Grid>
+</Window>
